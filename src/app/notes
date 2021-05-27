@@ -1,0 +1,53 @@
+Routing allows you to move from one part of the application 
+to another part or one View to another View.
+
+Using Angular Router you can
+
+Navigate to a specific view by typing a URL in the address bar
+Pass optional parameters to the View
+Bind the clickable elements to the View and load the view when user performs application tasks
+Handles back and forward buttons of the browser
+Allows you to dynamically load the view
+Protect the routes from unauthorized users using Guards
+
+How to configure Angular Router
+
+step 1. Set the <base href>
+
+    To make HTML5 routing to work, we need to set up the “base href” in the DOM. 
+    This is done in app’s index.html file immediately after the head tag.
+
+    see the code in index.html  ->  <base href="/">  
+
+step 2. Define routes for the view
+
+    Next, create an array of route objects. 
+    Each route maps path (URL Segment) to the component
+
+        const appRoutes={ path: 'product', component: ProductComponent }
+
+step 3. Register the Router Service with Routes
+
+    Import the Router Module from @angular/router library in the root module of the application
+
+        import { RouterModule } from '@angular/router';
+ 
+    Then, install the routes using the RouterModule.forRoot method, passing the routes as the argument in the imports array
+
+        imports: [RouterModule.forRoot(routes)],
+
+step 4.Map HTML Element actions to Route
+
+    Next, we need to bind the click event of the link, image or button to a route. 
+    This is done using the routerlink directive
+
+    <li><a [routerLink]="['product']">Product</a></li>
+
+step 5.Choose where you want to display the view
+
+add the following directive to the root component.
+
+<router-outlet></router-outlet>
+
+check with foll
+//https://code4developers.com/angular-6-crud-part-1-project-setup-routing-service/

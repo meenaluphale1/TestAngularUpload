@@ -1,0 +1,81 @@
+Angular Routing Tutorial with Example
+Http InterceptorLocation Strategies
+
+How to configure Angular Router uses
+
+Step1 :
+
+Set the <base href> in the DOM
+<base href="/">
+ This is done in app’s index.html file immediately after the head tag.
+
+Step2 :
+Define routes for the view 
+so create an array of route objects. 
+
+Each route maps path (URL Segment) to the component like 
+
+const appRoutes={ path: 'product', component: ProductComponent }
+ Where
+path: The URL path segment of the route.
+*Imp* use this value to refer to this route elsewhere in the app
+component: The component to be loaded.
+
+above eg : 
+This route tells angular to render ProductComponent when the user navigate to the URL "/product"
+
+Register the Router Service with Routes
+Import in the root module of the application
+import { RouterModule } from '@angular/router';
+Then, install the routes using the RouterModule.
+forRoot method, passing the routes as the argument in the imports array
+imports: [RouterModule.forRoot(routes)],
+
+
+
+Map HTML Element actions to Route
+Choose where you want to display the view
+
+=====================
+Child \ Nested Routes
+
+product component-html 
+<td><a [routerLink]="['/detail',p.productID]">{{p.productID}} </a> </td>
+     
+
+ng g c ProductDetail
+
+
+--add path
+      { path: 'detail/:id', component: ProductDetailComponent },
+
+  --add code in ProductDetail.component.tsfile 
+  product:Product;
+  id;
+  sub;
+
+  constructor(private _Activatedroute:ActivatedRoute,
+              private _router:Router,
+              private _productService:ProductService){
+  }
+
+  ngOnInit() {
+      this.id=this._Activatedroute.snapshot.params['id'];
+      let products=this._productService.getProducts();
+      this.product=products.find(p => p.productID==this.id);
+  }
+
+  
+    ngOnDestroy() {
+      this.sub.unsubscribe();
+    }
+
+
+add code in Product_details html
+<h3>Product Details Page</h3>
+ 
+product : {{product.name}}
+price : {{ product.price}}
+<p>
+    <a class='btn btn-default' (click)="onBack()">Back </a>
+</p>

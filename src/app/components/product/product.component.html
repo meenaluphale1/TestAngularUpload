@@ -1,0 +1,20 @@
+<h1>Product List</h1>
+<div class='table-responsive'>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of prodList;">
+                <td>{{p.productID}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.price}}</td>
+                <td><a [routerLink]="['/detail',p.productID]">{{p.name}} </a> </td>
+          </tr>
+        </tbody>
+    </table>
+</div>

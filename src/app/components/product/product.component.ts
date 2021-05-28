@@ -17,6 +17,7 @@ export class ProductComponent implements OnInit
   
   ngOnInit() {
     console.log("modified product.component.ts file ");
+    console.log("some modification");
     this.prodList=this.ProductService.getProducts();  
   }
   
